@@ -19,11 +19,44 @@ def init_ortho():
 done = False
 init_ortho()
 
-def draw_star(x, y, size):
-    glPointSize(size)
+def draw_point(x, y):
+    glPointSize(10.0)
     glBegin(GL_POINTS)
     glVertex2i(x, y)
     glEnd()
+
+def draw_line(x1, y1, x2, y2):
+    glBegin(GL_LINES)
+    glVertex2i(x1, y1)
+    glVertex2i(x2, y2)
+    glEnd()
+
+def draw_quads(x1, y1, x2, y2, x3, y3, x4, y4):
+    glBegin(GL_QUADS)
+    glVertex2f(x1, y1)
+    glVertex2f(x2, y2)
+    glVertex2f(x3, y3)
+    glVertex2f(x4, y4)
+    glEnd()
+
+def draw_triangle(x1, y1, x2, y2, x3, y3):
+    glBegin(GL_TRIANGLES)
+    glVertex2f(x1, y1)
+    glVertex2f(x2, y2)
+    glVertex2f(x3, y3)
+    glEnd()
+
+print("Informe as coordenadas do primeiro ponto da linha:")
+x1 = int(input("X1: ")) #100
+y1 = int(input("Y1: ")) #100
+
+print("Informe as coordenadas do segundo ponto da linha:")
+x2 = int(input("X2: ")) #500
+y2 = int(input("Y2: ")) #400
+
+square_size = 100
+square_x = 350
+square_y = 240
 
 while not done:
     for event in pygame.event.get():
@@ -34,15 +67,10 @@ while not done:
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
 
-    draw_star(231, 151, 20)
-    draw_star(257, 253, 20)
-    draw_star(303, 180, 15)
-    draw_star(443, 228, 20)
-    draw_star(445, 287, 10)
-    draw_star(385, 315, 20)
-    draw_star(371, 343, 10)
-    draw_star(397, 377, 10)
-    draw_star(435, 373, 10)
+    draw_point(231, 151)
+    draw_line(x1, y1, x2, y2)
+    draw_quads(300, 450, 400, 450, 400, 350, 300, 350)
+    draw_triangle(200, 400, 250, 300, 150, 300)
 
     pygame.display.flip()
     pygame.time.wait(100)
